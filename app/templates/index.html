@@ -204,6 +204,11 @@
       box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
     }
 
+    select.input-field option {
+      background-color: #ffffff;
+      color: var(--text-main);
+    }
+
     .helper-text {
       font-size: 11px;
       color: var(--text-muted);
@@ -652,8 +657,13 @@
         <div class="section-title">Active Settings</div>
         <label class="settings-label" for="userIdInput">User Context ID</label>
         <input type="text" id="userIdInput" class="input-field" value="analyst_01" placeholder="e.g. analyst_01">
-        <div class="helper-text">Partitioning the cache is done by User ID. Changing this lets you bypass cached
-          responses from other users.</div>
+        <div class="helper-text">Partitioning the cache is done by User ID.</div>
+        
+        <label class="settings-label" for="modelSelect" style="margin-top: 12px;">Reasoning Model</label>
+        <select id="modelSelect" class="input-field">
+          <option value="llama3">llama3</option>
+        </select>
+        <div class="helper-text">Select the LLM model to be used by the GraphRAG pipeline and input guardrails.</div>
       </div>
 
       <!-- Live Diagnostics Stats -->
@@ -666,6 +676,10 @@
         <div class="stat-row">
           <span class="stat-label">Execution Source:</span>
           <span class="stat-value" id="statSource">--</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Token Utilization:</span>
+          <span class="stat-value" id="statTokens">--</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">Cache Health:</span>
@@ -722,10 +736,47 @@
     const emptyState = document.getElementById('emptyState');
     const queryInput = document.getElementById('queryInput');
     const userIdInput = document.getElementById('userIdInput');
+    const modelSelect = document.getElementById('modelSelect');
+
+    // Fetch and populate available LLMs on load
+    async function loadModels() {
+      try {
+        const response = await fetch('/api/v1/models');
+        if (!response.ok) throw new Error("Could not retrieve models list");
+        const data = await response.json();
+        if (data.models && data.models.length > 0) {
+          modelSelect.innerHTML = '';
+          data.models.forEach(model => {
+            const opt = document.createElement('option');
+            opt.value = model;
+            opt.textContent = model;
+            modelSelect.appendChild(opt);
+          });
+          
+          // Select default 'llama3' or first one
+          const defaultModel = data.models.find(m => m.startsWith('llama3')) || data.models[0];
+          modelSelect.value = defaultModel;
+        }
+      } catch (e) {
+        console.warn("Failed to load models dynamically, using fallback", e);
+        const fallbacks = ["llama3:latest", "llama3.2:3b", "gemma3:4b", "mistral:latest", "deepseek-r1:8b"];
+        modelSelect.innerHTML = '';
+        fallbacks.forEach(model => {
+          const opt = document.createElement('option');
+          opt.value = model;
+          opt.textContent = model;
+          modelSelect.appendChild(opt);
+        });
+      }
+    }
+    
+    // Call loadModels on page load
+    window.addEventListener('DOMContentLoaded', loadModels);
 
     // Diagnostic stats elements
     const statLatency = document.getElementById('statLatency');
     const statSource = document.getElementById('statSource');
+    const statTokens = document.getElementById('statTokens');
 
     // Simple markdown to HTML formatter for the UI (bullet points and bold)
     function formatMessageText(text) {
@@ -855,6 +906,7 @@
     async function handleFormSubmit() {
       const query = queryInput.value.trim();
       const userId = userIdInput.value.trim() || 'analyst_01';
+      const model = modelSelect.value || 'llama3';
 
       if (!query) return;
 
@@ -877,7 +929,8 @@
           },
           body: JSON.stringify({
             user_id: userId,
-            query: query
+            query: query,
+            model: model
           })
         });
 
@@ -911,6 +964,13 @@
           statSource.style.color = 'var(--text-main)';
         }
 
+        if (data.tokens) {
+          const total = data.tokens.prompt_tokens + data.tokens.completion_tokens;
+          statTokens.textContent = `${total} (${data.tokens.prompt_tokens} in / ${data.tokens.completion_tokens} out)`;
+        } else {
+          statTokens.textContent = '0 (0 in / 0 out)';
+        }
+
       } catch (err) {
         removeTypingIndicator();
 
@@ -929,6 +989,7 @@
         statLatency.textContent = 'Err';
         statSource.textContent = 'Connection Error';
         statSource.style.color = 'var(--accent-rose)';
+        statTokens.textContent = 'Err';
       }
     }
   </script>

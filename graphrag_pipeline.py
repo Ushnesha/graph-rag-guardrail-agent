@@ -6,11 +6,11 @@ from hybrid_search_engine import HybridSearchEngine, CORPUS
 class GraphRAGPipeline:
     def __init__(self):
         self.search_engine = HybridSearchEngine(CORPUS)
-        ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+        self.ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         self.llm = ChatOllama(
             model="llama3.2:3b",
             temperature=0,
-            base_url=ollama_base_url
+            base_url=self.ollama_base_url
         )
         neo4j_uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
         neo4j_user = os.getenv("NEO4J_USER", "neo4j")
@@ -57,7 +57,7 @@ class GraphRAGPipeline:
                 relations.append(f"({record['source']})-[{record['rel']}]->({record['target']})")
         return relations
 
-    def run_pipeline(self, query:str) -> str:
+    def run_pipeline(self, query:str, model_name: str = "llama3.2:3b") -> str:
 
         text_context = self.search_engine.search(query)
 
@@ -68,7 +68,12 @@ class GraphRAGPipeline:
         context_str = "Text Context:\n" + "\n".join(text_context) + "\n\nGraph Context:\n" + "\n".join(graph_context)
         prompt = f"Using ONLY the context below, answer the query.\n\nContext:\n{context_str}\n\nQuery: {query}"
         
-        response = self.llm.invoke(prompt).content
+        llm = ChatOllama(
+            model=model_name,
+            temperature=0,
+            base_url=self.ollama_base_url
+        )
+        response = llm.invoke(prompt).content
         return response, context_str
 
 
