@@ -1,0 +1,9 @@
+qdrant-client
+rank-bm25
+langchain-ollama
+pydantic
+neo4j
+redis
+fastapi
+uvicorn
+langgraph

@@ -1,0 +1,141 @@
+# phase1_hybrid.py
+import os
+import hashlib
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams, PointStruct
+from rank_bm25 import BM25Okapi
+from langchain_ollama import OllamaEmbeddings
+
+# 1. Define the Raw Corpus
+CORPUS = [
+    "Project Alpha is our primary cloud migration effort, managed by Sarah.",
+    "Sarah is the VP of Infrastructure and likes drinking green tea.",
+    "We have a strict $50,000 budget ceiling for cloud infrastructure operations.",
+    "The marketing team is preparing a campaign for Project Alpha launch."
+]
+
+class HybridSearchEngine:
+    def __init__(self, documents: list):
+        self.documents = documents
+        
+        # Initialize Local Ollama Embeddings
+        self.embeddings = OllamaEmbeddings(
+            model="nomic-embed-text",
+            base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+        )
+        
+        # Initialize Qdrant
+        self.qdrant = QdrantClient(path="./qdrant_db")
+        self.collection_name = "local_chunks"
+        
+        # Generate a hash representing the current corpus content
+        corpus_str = "".join(sorted(self.documents))
+        current_hash = hashlib.md5(corpus_str.encode("utf-8")).hexdigest()
+        
+        self.recreate_needed = True
+        if self.qdrant.collection_exists(self.collection_name):
+            try:
+                # Retrieve the special metadata point holding the corpus hash (ID: 999999)
+                results = self.qdrant.retrieve(
+                    collection_name=self.collection_name,
+                    ids=[999999]
+                )
+                if results and results[0].payload.get("corpus_hash") == current_hash:
+                    self.recreate_needed = False
+            except Exception:
+                pass
+        
+        if self.recreate_needed:
+            # Delete and rebuild the collection if the corpus has changed
+            if self.qdrant.collection_exists(self.collection_name):
+                self.qdrant.delete_collection(self.collection_name)
+            
+            self.qdrant.create_collection(
+                collection_name=self.collection_name,
+                vectors_config=VectorParams(size=768, distance=Distance.COSINE) # nomic vectors are 768-dim
+            )
+            self._initialize_qdrant(current_hash)
+        
+        # Initialize BM25 Index
+        self.tokenized_corpus = [doc.lower().split(" ") for doc in documents]
+        self.bm25 = BM25Okapi(self.tokenized_corpus)
+
+    # called only when there are no documents or when the contents of the corpus documents change
+    def _initialize_qdrant(self, corpus_hash: str):
+        
+        # convert all documents into vectors
+        vectors = self.embeddings.embed_documents(self.documents)
+
+        # create points with vectors and documents
+        points = [
+            PointStruct(
+                id=idx,
+                vector=vector,
+                payload={"text": text}
+            )
+            for idx, (text, vector) in enumerate(zip(self.documents, vectors))
+        ]
+        # Append a special control point containing the corpus hash
+        points.append(
+            PointStruct(
+                id=999999,
+                vector=[0.0] * 768,  # dummy vector matching nomic dimension
+                payload={"corpus_hash": corpus_hash}
+            )
+        )
+        self.qdrant.upsert(
+            collection_name=self.collection_name,
+            points=points
+        )
+
+    def search(self, query: str, k: int = 60, limit: int = 2) -> list:
+        # A. Vector Search
+        query_vector = self.embeddings.embed_query(query)
+        v_results = self.qdrant.query_points(
+            collection_name=self.collection_name,
+            query=query_vector,
+            limit=10
+        ).points
+        vector_ranks = {
+            hit.payload["text"]: index
+            for index, hit in enumerate(v_results)
+            if hit.id != 999999 and hit.payload and "text" in hit.payload
+        }
+
+        # B. BM25 Search
+        tokenized_query = query.lower().split(" ")
+        bm25_scores = self.bm25.get_scores(tokenized_query)
+        ranked_bm25 = sorted(zip(self.documents, bm25_scores), key=lambda x: x[1], reverse=True)
+        bm25_ranks = {doc: index for index, (doc, score) in enumerate(ranked_bm25) if score > 0}
+
+        # C. Reciprocal Rank Fusion (RRF) Calculation
+        rrf_scores = {}
+        all_candidates = set(list(vector_ranks.keys()) + list(bm25_ranks.keys()))
+        for doc in all_candidates:
+            score = 0.0
+            if doc in vector_ranks:
+                score += 1.0 / (k + vector_ranks[doc] + 1)
+            if doc in bm25_ranks:
+                score += 1.0 / (k + bm25_ranks[doc] + 1)
+            rrf_scores[doc] = score
+
+        # Sort based on consolidated scores
+        sorted_docs = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
+        return [doc[0] for doc in sorted_docs[:limit]]
+
+    def close(self):
+        self.qdrant.close()
+
+if __name__ == "__main__":
+    from time import time
+    start_time = time()
+    engine = HybridSearchEngine(CORPUS)
+    user_query = "What is the budget limit for Sarah's cloud infrastructure project?"
+    refined_results = engine.search(user_query)
+    engine.close()
+    end_time = time()
+    print(f"Time taken: {(end_time - start_time) * 1000} ms")
+    print("--- REFINED SEARCH RESULTS (RRF) ---")
+    print(f"Query: {user_query}")
+    for idx, result in enumerate(refined_results):
+        print(f"[{idx + 1}] {result}")

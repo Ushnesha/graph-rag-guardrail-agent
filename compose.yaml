@@ -1,0 +1,50 @@
+version: '3.8'
+
+networks:
+  ingress-routing:
+    driver: bridge
+  data-backplane:
+    internal: true # Databases are isolated from direct public internet exposure
+
+services:
+  # Caching Cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: dev-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - data-backplane
+
+  # Relational Entity Store
+  neo4j:
+    image: neo4j:5.20-community
+    container_name: dev-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/password123
+    networks:
+      - data-backplane
+
+  # Unified API Service
+  api-service:
+    build: .
+    container_name: dev-api-service
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=password123
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Bridge to hit Ollama running on your GPU host machine
+    depends_on:
+      - redis
+      - neo4j
+    networks:
+      - ingress-routing
+      - data-backplane
