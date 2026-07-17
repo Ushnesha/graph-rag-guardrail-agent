@@ -58,6 +58,7 @@ docker compose up -d --build
 
 | Commit | Author | Date | Message |
 | --- | --- | --- | --- |
+| `06da702` | Ushnesha Daripa | 2026-07-17 | feat: implement dynamic model selection, token utilization stats, and auto-updating README |
 | `d083eee` | Ushnesha Daripa | 2026-07-17 | phase 1 - added |
 
 
