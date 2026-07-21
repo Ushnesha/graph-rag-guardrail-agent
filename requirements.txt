@@ -7,3 +7,9 @@ redis
 fastapi
 uvicorn
 langgraph
+llama-index
+llama-parse
+llama-index-graph-stores-neo4j
+llama-index-embeddings-ollama
+llama-index-llms-ollama
+llama-index-postprocessor-cohere-rerank
