@@ -13,3 +13,5 @@ llama-index-graph-stores-neo4j
 llama-index-embeddings-ollama
 llama-index-llms-ollama
 llama-index-postprocessor-cohere-rerank
+sentence-transformers
+langchain-huggingface

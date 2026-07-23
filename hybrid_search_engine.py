@@ -5,28 +5,34 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from rank_bm25 import BM25Okapi
 from langchain_ollama import OllamaEmbeddings
+from load_data import FinQA_corpus, TatQA_corpus
+from langchain_huggingface import HuggingFaceEmbeddings
 
 # 1. Define the Raw Corpus
-CORPUS = [
-    "Project Alpha is our primary cloud migration effort, managed by Sarah.",
-    "Sarah is the VP of Infrastructure and likes drinking green tea.",
-    "We have a strict $50,000 budget ceiling for cloud infrastructure operations.",
-    "The marketing team is preparing a campaign for Project Alpha launch."
-]
+# CORPUS = [
+#     "Project Alpha is our primary cloud migration effort, managed by Sarah.",
+#     "Sarah is the VP of Infrastructure and likes drinking green tea.",
+#     "We have a strict $50,000 budget ceiling for cloud infrastructure operations.",
+#     "The marketing team is preparing a campaign for Project Alpha launch."
+# ]
+
+CORPUS = FinQA_corpus
 
 class HybridSearchEngine:
     def __init__(self, documents: list):
         self.documents = documents
         
         # Initialize Local Ollama Embeddings
-        self.embeddings = OllamaEmbeddings(
-            model="nomic-embed-text",
-            base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+        self.embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2",
+            model_kwargs={
+                'device':'mps',
+            }
         )
         
         # Initialize Qdrant
         self.qdrant = QdrantClient(path="./qdrant_db")
-        self.collection_name = "local_chunks"
+        self.collection_name = "local_chunks_minilm"
         
         # Generate a hash representing the current corpus content
         corpus_str = "".join(sorted(self.documents))
@@ -47,12 +53,13 @@ class HybridSearchEngine:
         
         if self.recreate_needed:
             # Delete and rebuild the collection if the corpus has changed
+            print("Corpus has changed, recreating Qdrant collection...")
             if self.qdrant.collection_exists(self.collection_name):
                 self.qdrant.delete_collection(self.collection_name)
             
             self.qdrant.create_collection(
                 collection_name=self.collection_name,
-                vectors_config=VectorParams(size=768, distance=Distance.COSINE) # nomic vectors are 768-dim
+                vectors_config=VectorParams(size=384, distance=Distance.COSINE) # miniLM vectors are 384 dim
             )
             self._initialize_qdrant(current_hash)
         
@@ -62,7 +69,7 @@ class HybridSearchEngine:
 
     # called only when there are no documents or when the contents of the corpus documents change
     def _initialize_qdrant(self, corpus_hash: str):
-        
+        print("Initializing Qdrant collection...")
         # convert all documents into vectors
         vectors = self.embeddings.embed_documents(self.documents)
 
@@ -79,14 +86,19 @@ class HybridSearchEngine:
         points.append(
             PointStruct(
                 id=999999,
-                vector=[0.0] * 768,  # dummy vector matching nomic dimension
+                vector=[0.0] * len(vectors[0]),  # dummy vector matching nomic dimension
                 payload={"corpus_hash": corpus_hash}
             )
         )
-        self.qdrant.upsert(
-            collection_name=self.collection_name,
-            points=points
-        )
+
+        # implementing batching for large vector datasets
+        batch_size = 500
+        for i in range(0, len(points), batch_size):
+            batch = points[i: i + batch_size]
+            self.qdrant.upsert(
+                collection_name=self.collection_name,
+                points=batch
+            )
 
     def search(self, query: str, k: int = 60, limit: int = 2) -> list:
         # A. Vector Search
@@ -130,7 +142,8 @@ if __name__ == "__main__":
     from time import time
     start_time = time()
     engine = HybridSearchEngine(CORPUS)
-    user_query = "What is the budget limit for Sarah's cloud infrastructure project?"
+    print("Hybrid Search Engine Initialized")
+    user_query = "what is the the interest expense in 2009?"
     refined_results = engine.search(user_query)
     engine.close()
     end_time = time()
