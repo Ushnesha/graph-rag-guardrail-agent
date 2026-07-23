@@ -58,10 +58,11 @@ docker compose up -d --build
 
 | Commit | Author | Date | Message |
 | --- | --- | --- | --- |
+| `204013e` | Ushnesha Daripa | 2026-07-22 | switching to mps embedding calls from ollama call, implemented batch qdrant upserting |
+| `685f3c9` | Ushnesha Daripa | 2026-07-20 | docs: auto-update README [skip ci] |
 | `7aa365b` | Ushnesha Daripa | 2026-07-20 | load_data.py added for adding FinQA and TatQA dataset |
 | `d6d66af` | Ushnesha Daripa | 2026-07-17 | docs: auto-update README [skip ci] |
 | `06da702` | Ushnesha Daripa | 2026-07-17 | feat: implement dynamic model selection, token utilization stats, and auto-updating README |
-| `d083eee` | Ushnesha Daripa | 2026-07-17 | phase 1 - added |
 
 
 ---
