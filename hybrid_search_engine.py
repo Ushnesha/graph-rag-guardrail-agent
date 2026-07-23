@@ -1,6 +1,7 @@
 # phase1_hybrid.py
 import os
 import hashlib
+import pickle
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from rank_bm25 import BM25Okapi
@@ -21,7 +22,7 @@ CORPUS = FinQA_corpus
 class HybridSearchEngine:
     def __init__(self, documents: list):
         self.documents = documents
-        
+
         # Initialize Local Ollama Embeddings
         self.embeddings = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-MiniLM-L6-v2",
@@ -37,6 +38,7 @@ class HybridSearchEngine:
         # Generate a hash representing the current corpus content
         corpus_str = "".join(sorted(self.documents))
         current_hash = hashlib.md5(corpus_str.encode("utf-8")).hexdigest()
+
         
         self.recreate_needed = True
         if self.qdrant.collection_exists(self.collection_name):
@@ -62,10 +64,24 @@ class HybridSearchEngine:
                 vectors_config=VectorParams(size=384, distance=Distance.COSINE) # miniLM vectors are 384 dim
             )
             self._initialize_qdrant(current_hash)
-        
+
         # Initialize BM25 Index
-        self.tokenized_corpus = [doc.lower().split(" ") for doc in documents]
-        self.bm25 = BM25Okapi(self.tokenized_corpus)
+        bm25_path = "./qdrant_db/bm25_index.pkl"
+        if self.recreate_needed or not os.path.exists(bm25_path):
+            print("Building and saving BM25 index...")
+            self.tokenized_corpus = [doc.lower().split(" ") for doc in documents]
+            self.bm25 = BM25Okapi(self.tokenized_corpus)
+            # Save BM25 index to disk
+            with open(bm25_path, "wb") as f:
+                pickle.dump(self.bm25, f)
+        else:
+            print("Loading BM25 index from cache...")
+            with open(bm25_path, "rb") as f:
+                self.bm25 = pickle.load(f)
+
+
+        
+        
 
     # called only when there are no documents or when the contents of the corpus documents change
     def _initialize_qdrant(self, corpus_hash: str):
