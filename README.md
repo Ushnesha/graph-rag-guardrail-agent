@@ -58,11 +58,11 @@ docker compose up -d --build
 
 | Commit | Author | Date | Message |
 | --- | --- | --- | --- |
+| `ec80edb` | Ushnesha Daripa | 2026-07-22 | disk pickling of bm25 index to avoid rebuilding on every run |
+| `6926590` | Ushnesha Daripa | 2026-07-22 | docs: auto-update README [skip ci] |
 | `dd9fb2c` | Ushnesha Daripa | 2026-07-22 | added time logs for audit |
 | `85b2f56` | Ushnesha Daripa | 2026-07-22 | docs: auto-update README [skip ci] |
 | `204013e` | Ushnesha Daripa | 2026-07-22 | switching to mps embedding calls from ollama call, implemented batch qdrant upserting |
-| `685f3c9` | Ushnesha Daripa | 2026-07-20 | docs: auto-update README [skip ci] |
-| `7aa365b` | Ushnesha Daripa | 2026-07-20 | load_data.py added for adding FinQA and TatQA dataset |
 
 
 ---
