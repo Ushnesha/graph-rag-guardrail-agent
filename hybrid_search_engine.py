@@ -140,14 +140,17 @@ class HybridSearchEngine:
 
 if __name__ == "__main__":
     from time import time
-    start_time = time()
+    initialization_start_time = time()
     engine = HybridSearchEngine(CORPUS)
     print("Hybrid Search Engine Initialized")
+    initialization_end_time = time()
+    print(f"Time taken for Hybrid Search Engine Initialization: {(initialization_end_time - initialization_start_time) * 1000} ms")
+    query_srch_start_time = time()
     user_query = "what is the the interest expense in 2009?"
     refined_results = engine.search(user_query)
+    query_srch_end_time = time()
+    print(f"Time taken for Query Search: {(query_srch_end_time - query_srch_start_time) * 1000} ms")
     engine.close()
-    end_time = time()
-    print(f"Time taken: {(end_time - start_time) * 1000} ms")
     print("--- REFINED SEARCH RESULTS (RRF) ---")
     print(f"Query: {user_query}")
     for idx, result in enumerate(refined_results):
