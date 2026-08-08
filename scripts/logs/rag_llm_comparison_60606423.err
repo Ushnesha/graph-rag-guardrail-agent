@@ -1,0 +1,225 @@
+/var/spool/slurmd/job60606423/slurm_script: line 32: [: -z: binary operator expected
+/var/spool/slurmd/job60606423/slurm_script: line 32: [: -z: binary operator expected
+(APIServer pid=367164) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(EngineCore pid=367416) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(EngineCore pid=367416) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=367416) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:17<00:51, 17.22s/it]
+(EngineCore pid=367416) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:18<00:15,  7.66s/it]
+(EngineCore pid=367416) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:19<00:04,  4.60s/it]
+(EngineCore pid=367416) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:19<00:00,  3.09s/it]
+(EngineCore pid=367416) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:19<00:00,  4.98s/it]
+(EngineCore pid=367416) 
+(EngineCore pid=367416) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   4%|▍         | 2/51 [00:00<00:03, 14.07it/s]Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:00<00:02, 18.16it/s]Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 19.76it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:00<00:01, 21.45it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 14/51 [00:00<00:01, 22.63it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:00<00:01, 23.94it/s]Capturing CUDA graphs (PIECEWISE):  41%|████      | 21/51 [00:00<00:01, 26.28it/s]Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 25/51 [00:01<00:01, 25.75it/s]Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:00, 27.50it/s]Capturing CUDA graphs (PIECEWISE):  65%|██████▍   | 33/51 [00:01<00:00, 28.89it/s]Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 37/51 [00:01<00:00, 30.72it/s]Capturing CUDA graphs (PIECEWISE):  80%|████████  | 41/51 [00:01<00:00, 32.26it/s]Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 45/51 [00:01<00:00, 33.78it/s]Capturing CUDA graphs (PIECEWISE):  96%|█████████▌| 49/51 [00:01<00:00, 25.93it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 26.31it/s]
+(EngineCore pid=367416) Capturing CUDA graphs (FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):   3%|▎         | 1/35 [00:00<00:06,  5.60it/s]Capturing CUDA graphs (FULL):  14%|█▍        | 5/35 [00:00<00:01, 19.03it/s]Capturing CUDA graphs (FULL):  26%|██▌       | 9/35 [00:00<00:01, 25.00it/s]Capturing CUDA graphs (FULL):  37%|███▋      | 13/35 [00:00<00:00, 28.50it/s]Capturing CUDA graphs (FULL):  49%|████▊     | 17/35 [00:00<00:00, 30.84it/s]Capturing CUDA graphs (FULL):  60%|██████    | 21/35 [00:00<00:00, 33.33it/s]Capturing CUDA graphs (FULL):  74%|███████▍  | 26/35 [00:00<00:00, 35.76it/s]Capturing CUDA graphs (FULL):  86%|████████▌ | 30/35 [00:01<00:00, 25.30it/s]Capturing CUDA graphs (FULL): 100%|██████████| 35/35 [00:01<00:00, 29.76it/s]Capturing CUDA graphs (FULL): 100%|██████████| 35/35 [00:01<00:00, 28.00it/s]
+(APIServer pid=367164) INFO:     Started server process [367164]
+(APIServer pid=367164) INFO:     Waiting for application startup.
+(APIServer pid=367164) INFO:     Application startup complete.
+/var/spool/slurmd/job60606423/slurm_script: line 32: [: -z: binary operator expected
+(EngineCore pid=368115) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=368115) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:19<00:57, 19.05s/it]
+(EngineCore pid=368115) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:19<00:16,  8.39s/it]
+(EngineCore pid=368115) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:20<00:04,  4.96s/it]
+(EngineCore pid=368115) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:21<00:00,  3.18s/it]
+(EngineCore pid=368115) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:21<00:00,  5.33s/it]
+(EngineCore pid=368115) 
+(EngineCore pid=368115) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   4%|▍         | 2/51 [00:00<00:02, 17.19it/s]Capturing CUDA graphs (PIECEWISE):   8%|▊         | 4/51 [00:00<00:02, 17.92it/s]Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 18.52it/s]Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 19.02it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:00<00:01, 20.69it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 14/51 [00:00<00:01, 21.61it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:00<00:01, 22.57it/s]Capturing CUDA graphs (PIECEWISE):  39%|███▉      | 20/51 [00:00<00:01, 23.92it/s]Capturing CUDA graphs (PIECEWISE):  45%|████▌     | 23/51 [00:01<00:01, 24.91it/s]Capturing CUDA graphs (PIECEWISE):  51%|█████     | 26/51 [00:01<00:00, 25.55it/s]Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:00, 25.55it/s]Capturing CUDA graphs (PIECEWISE):  63%|██████▎   | 32/51 [00:01<00:00, 26.30it/s]Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 35/51 [00:01<00:00, 27.32it/s]Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 28.50it/s]Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 29.68it/s]Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 31.37it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 31.59it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 26.03it/s]
+(EngineCore pid=368115) Capturing CUDA graphs (FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):   9%|▊         | 3/35 [00:00<00:01, 26.79it/s]Capturing CUDA graphs (FULL):  17%|█▋        | 6/35 [00:00<00:01, 27.90it/s]Capturing CUDA graphs (FULL):  26%|██▌       | 9/35 [00:00<00:00, 28.38it/s]Capturing CUDA graphs (FULL):  34%|███▍      | 12/35 [00:00<00:00, 28.90it/s]Capturing CUDA graphs (FULL):  46%|████▌     | 16/35 [00:00<00:00, 29.46it/s]Capturing CUDA graphs (FULL):  57%|█████▋    | 20/35 [00:00<00:00, 30.58it/s]Capturing CUDA graphs (FULL):  69%|██████▊   | 24/35 [00:00<00:00, 31.74it/s]Capturing CUDA graphs (FULL):  80%|████████  | 28/35 [00:00<00:00, 33.35it/s]Capturing CUDA graphs (FULL):  91%|█████████▏| 32/35 [00:01<00:00, 34.76it/s]Capturing CUDA graphs (FULL): 100%|██████████| 35/35 [00:01<00:00, 32.41it/s]
+(APIServer pid=367975) INFO:     Started server process [367975]
+(APIServer pid=367975) INFO:     Waiting for application startup.
+(APIServer pid=367975) INFO:     Application startup complete.
+python: can't open file '/home/udaripa/projects/graph-rag-guardrail-agent/scripts/evaluation/compare_models.py': [Errno 2] No such file or directory
+(APIServer pid=367975) INFO:     Shutting down
+(APIServer pid=367975) INFO:     Shutting down
+(APIServer pid=367975) INFO:     Waiting for application shutdown.
+(APIServer pid=367975) INFO:     Application shutdown complete.
+/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/var/spool/slurmd/job60606423/slurm_script: line 32: [: -z: binary operator expected
+(APIServer pid=368699) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(EngineCore pid=368851) /home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:744: UserWarning: Not enough free disk space to download the file. The expected file size is: 14496.08 MB. The target location /home/udaripa/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3/blobs only has 6178.73 MB free disk space.
+(EngineCore pid=368851)   warnings.warn(
+(EngineCore pid=368851) Process EngineCore:
+(EngineCore pid=368851) Traceback (most recent call last):
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=368851)     self.run()
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/multiprocessing/process.py", line 108, in run
+(EngineCore pid=368851)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core.py", line 1334, in run_engine_core
+(EngineCore pid=368851)     raise e
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core.py", line 1299, in run_engine_core
+(EngineCore pid=368851)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=368851)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=368851)     return func(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core.py", line 1065, in __init__
+(EngineCore pid=368851)     super().__init__(
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core.py", line 125, in __init__
+(EngineCore pid=368851)     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=368851)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=368851)     return func(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/executor/abstract.py", line 109, in __init__
+(EngineCore pid=368851)     self._init_executor()
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/executor/uniproc_executor.py", line 68, in _init_executor
+(EngineCore pid=368851)     self.driver_worker.load_model()
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/worker/gpu_worker.py", line 431, in load_model
+(EngineCore pid=368851)     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/worker/gpu/model_runner.py", line 286, in load_model
+(EngineCore pid=368851)     self.model = model_loader.load_model(
+(EngineCore pid=368851)                  ^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=368851)     return func(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/base_loader.py", line 64, in load_model
+(EngineCore pid=368851)     self.load_weights(model, model_config)
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=368851)     return func(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/default_loader.py", line 427, in load_weights
+(EngineCore pid=368851)     loaded_weights = model.load_weights(self.get_all_weights(model_config, model))
+(EngineCore pid=368851)                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/mistral.py", line 284, in load_weights
+(EngineCore pid=368851)     return loader.load_weights(
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/reload/torchao_decorator.py", line 50, in patched_model_load_weights
+(EngineCore pid=368851)     return original_load_weights(self, weights, *args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/utils.py", line 424, in load_weights
+(EngineCore pid=368851)     autoloaded_weights = set(self._load_module("", self.module, weights))
+(EngineCore pid=368851)                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/utils.py", line 349, in _load_module
+(EngineCore pid=368851)     for child_prefix, child_weights in self._groupby_prefix(weights):
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/utils.py", line 226, in _groupby_prefix
+(EngineCore pid=368851)     for prefix, group in itertools.groupby(weights_by_parts, key=lambda x: x[0][0]):
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/utils.py", line 221, in <genexpr>
+(EngineCore pid=368851)     weights_by_parts = (
+(EngineCore pid=368851)                        ^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/utils.py", line 420, in <genexpr>
+(EngineCore pid=368851)     weights = (
+(EngineCore pid=368851)               ^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/models/mistral.py", line 284, in <genexpr>
+(EngineCore pid=368851)     return loader.load_weights(
+(EngineCore pid=368851)                               ^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/default_loader.py", line 333, in get_all_weights
+(EngineCore pid=368851)     yield from self._get_weights_iterator(primary_weights)
+(EngineCore pid=368851)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/default_loader.py", line 249, in _get_weights_iterator
+(EngineCore pid=368851)     hf_folder, hf_weights_files, use_safetensors = self._prepare_weights(
+(EngineCore pid=368851)                                                    ^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/default_loader.py", line 195, in _prepare_weights
+(EngineCore pid=368851)     hf_folder = download_weights_from_hf(
+(EngineCore pid=368851)                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=368851)     return func(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/model_executor/model_loader/weight_utils.py", line 512, in download_weights_from_hf
+(EngineCore pid=368851)     hf_folder = hf_api().snapshot_download(
+(EngineCore pid=368851)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+(EngineCore pid=368851)     return fn(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 6667, in snapshot_download
+(EngineCore pid=368851)     return snapshot_download(
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+(EngineCore pid=368851)     return fn(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 515, in snapshot_download
+(EngineCore pid=368851)     thread_map(
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+(EngineCore pid=368851)     return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+(EngineCore pid=368851)     return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/tqdm/std.py", line 1175, in __iter__
+(EngineCore pid=368851)     for obj in iterable:
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+(EngineCore pid=368851)     yield _result_or_cancel(fs.pop())
+(EngineCore pid=368851)           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+(EngineCore pid=368851)     return fut.result(timeout)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+(EngineCore pid=368851)     return self.__get_result()
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+(EngineCore pid=368851)     raise self._exception
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+(EngineCore pid=368851)     result = self.fn(*self.args, **self.kwargs)
+(EngineCore pid=368851)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 495, in _inner_hf_hub_download
+(EngineCore pid=368851)     hf_hub_download(  # type: ignore
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+(EngineCore pid=368851)     return fn(*args, **kwargs)
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1013, in hf_hub_download
+(EngineCore pid=368851)     return _hf_hub_download_to_cache_dir(
+(EngineCore pid=368851)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1236, in _hf_hub_download_to_cache_dir
+(EngineCore pid=368851)     _download_to_tmp_and_move(
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1920, in _download_to_tmp_and_move
+(EngineCore pid=368851)     xet_get(
+(EngineCore pid=368851)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 563, in xet_get
+(EngineCore pid=368851)     with session.new_file_download_group(
+(EngineCore pid=368851) RuntimeError: Task error: File reconstruction error: Internal Writer Error: Background writer channel closed
+[rank0]:[W807 18:18:25.367314114 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=368699) Traceback (most recent call last):
+(APIServer pid=368699)   File "<frozen runpy>", line 198, in _run_module_as_main
+(APIServer pid=368699)   File "<frozen runpy>", line 88, in _run_code
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 799, in <module>
+(APIServer pid=368699)     uvloop.run(run_server(args))
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+(APIServer pid=368699)     return runner.run(wrapper())
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/asyncio/runners.py", line 118, in run
+(APIServer pid=368699)     return self._loop.run_until_complete(task)
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=368699)     return await main
+(APIServer pid=368699)            ^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 759, in run_server
+(APIServer pid=368699)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 773, in run_server_worker
+(APIServer pid=368699)     async with build_async_engine_client(
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=368699)     return await anext(self.gen)
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 139, in build_async_engine_client
+(APIServer pid=368699)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=368699)     return await anext(self.gen)
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 175, in build_async_engine_client_from_engine_args
+(APIServer pid=368699)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=368699)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
+(APIServer pid=368699)     return cls(
+(APIServer pid=368699)            ^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py", line 146, in __init__
+(APIServer pid=368699)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=368699)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=368699)     return func(*args, **kwargs)
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core_client.py", line 132, in make_async_mp_client
+(APIServer pid=368699)     return AsyncMPClient(*client_args)
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=368699)     return func(*args, **kwargs)
+(APIServer pid=368699)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core_client.py", line 963, in __init__
+(APIServer pid=368699)     super().__init__(
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/core_client.py", line 573, in __init__
+(APIServer pid=368699)     with launch_core_engines(
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/contextlib.py", line 144, in __exit__
+(APIServer pid=368699)     next(self.gen)
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/utils.py", line 1213, in launch_core_engines
+(APIServer pid=368699)     wait_for_engine_startup(
+(APIServer pid=368699)   File "/home/udaripa/projects/.conda/envs/ush_venv/lib/python3.11/site-packages/vllm/v1/engine/utils.py", line 1272, in wait_for_engine_startup
+(APIServer pid=368699)     raise RuntimeError(
+(APIServer pid=368699) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+[2026-08-07T19:00:13.077] error: *** JOB 60606423 ON sg010 CANCELLED AT 2026-08-07T19:00:13 DUE to SIGNAL Terminated ***

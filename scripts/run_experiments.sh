@@ -1,10 +1,33 @@
 #!/bin/bash
 
+#SBATCH --job-name=rag_llm_comparison
+#SBATCH --partition=gpu                  # Adjust to your cluster's GPU partition name
+#SBATCH --gres=gpu:1                     # Request 1 GPU
+#SBATCH --cpus-per-task=8                # Request 8 CPU cores
+#SBATCH --mem=64G                        # Request 64 GB system memory
+#SBATCH --time=03:00:00                  # 3 hours max execution time
+#SBATCH --output=results/job_%j.log       # Stdout log path (%j expands to job ID)
+#SBATCH --error=results/job_%j.err        # Stderr log path
+
+# Environment Python Path (direct resolution to bypass conda activation hook limitations)
+ENV_PYTHON="/home/udaripa/projects/.conda/envs/ush_venv/bin/python"
+
 # Configuration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/compare_models.py" ]; then
+    COMPARE_SCRIPT="$SCRIPT_DIR/compare_models.py"
+elif [ -f "$SCRIPT_DIR/../evaluation/compare_models.py" ]; then
+    COMPARE_SCRIPT="$SCRIPT_DIR/../evaluation/compare_models.py"
+elif [ -f "$SCRIPT_DIR/evaluation/compare_models.py" ]; then
+    COMPARE_SCRIPT="$SCRIPT_DIR/evaluation/compare_models.py"
+else
+    COMPARE_SCRIPT="evaluation/compare_models.py"
+fi
+export HF_HUB_DISABLE_XET=1
 JUDGE_MODEL="Qwen/Qwen2.5-7B-Instruct"
 JUDGE_PORT=11435
 RAG_PORT=11434
-HF_TOKEN="${HF_TOKEN:-<your_huggingface_token>}"
+HF_TOKEN=""
 LIMIT=50
 CONCURRENCY=5
 
@@ -19,7 +42,7 @@ MODELS=(
 cleanup_port() {
   local port=$1
   local pid=$(lsof -t -i:$port)
-  if [ -not -z "$pid" ]; then
+  if [ -n "$pid" ]; then
     echo "⚠️ Port $port is in use by PID $pid. Killing process..."
     kill -9 $pid
     sleep 2
@@ -42,7 +65,7 @@ cleanup_port $JUDGE_PORT
 
 # 1. Start the Judge model (kept running throughout the entire experiment)
 echo "🚀 Starting Judge Model: $JUDGE_MODEL on port $JUDGE_PORT..."
-HF_TOKEN=$HF_TOKEN python -m vllm.entrypoints.openai.api_server \
+HF_TOKEN=$HF_TOKEN $ENV_PYTHON -m vllm.entrypoints.openai.api_server \
   --model $JUDGE_MODEL \
   --port $JUDGE_PORT \
   --host 0.0.0.0 \
@@ -64,7 +87,7 @@ for MODEL in "${MODELS[@]}"; do
 
   echo "🚀 Launching vLLM server for $MODEL on port $RAG_PORT..."
   # Allocating 0.45 VRAM allows plenty of KV cache space for a single model on an 80GB card
-  HF_TOKEN=$HF_TOKEN python -m vllm.entrypoints.openai.api_server \
+  HF_TOKEN=$HF_TOKEN $ENV_PYTHON -m vllm.entrypoints.openai.api_server \
     --model $MODEL \
     --port $RAG_PORT \
     --host 0.0.0.0 \
@@ -76,7 +99,7 @@ for MODEL in "${MODELS[@]}"; do
   wait_for_port $RAG_PORT
 
   echo "📊 Running evaluation metrics and token tracking script..."
-  python evaluation/compare_models.py \
+  $ENV_PYTHON "$COMPARE_SCRIPT" \
     --models "$MODEL:$RAG_PORT" \
     --limit $LIMIT \
     --concurrency $CONCURRENCY \
